@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+		<meta NAME="Author" CONTENT="Rick Allen Kauffman">
+		<title>Wookieware.com</title>
+		<link rel="stylesheet" type="text/css" href="./css/corex.css"/>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	</head>
+
+	<body>
+		<FORM method='post' ACTION="./cgi-bin/pid_main.py">
+		  <header>
+		      <h1><img border =0 src="./images/glarn.png" width="50" height="50"> glarn: The dpid database</h1>
+		      <p>glarn is a database that will automatically associate the dpid with physical switch information stored in HP IMC. It will automatically merge the IMC device information . Ipaddress and sysContact info to start.</p>
+		  </header>
+		<div id="login_creds">
+		  <h3>Enter the login credentials for the SDN Controller</h3>
+		  <table border=10>
+		   <tr>
+		      <td>Controller IP Address: <input name="server" size=20>  Username: <input name="user" size=15>  Password: <input type="password" name="passw" size=15></td>
+		   </tr> 
+		  </table>
+		  <h3>Enter the login credentials for IMC</h3>
+		  <table border=10>
+		   <tr>
+		      <td>IMC IP Address: <input name="imc_server" size=20>  Username: <input name="imc_user" size=15>  Password: <input type="password" name="imc_passw" size=15></td>
+		   </tr> 
+		  </table>
+		  </table>
+		</div>
+		<BR>
+		<BR>
+		<HR>
+		<div id="submit">
+  		<center><input type="submit" style="font-face: 'Comic Sans MS'; font-size: larger; color: black; background-color: #0066FF; border: 3pt ridge lightgrey" value=" Submit"></center>
+  		</div>
+  		<footer>
+		  <p align="center"><font size="1" face="Arial" class="test">SDN Solutions from wookieware.com 2014</p>
+		  <img border =0 src="./images/wookieware.JPG" width="50" height="50">
+		</footer>
+	</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+		<meta NAME="Author" CONTENT="Chewie">
+		<title>Wookieware.com</title>
+		<link rel="stylesheet" type="text/css" href="./css/corex.css"/>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	</head>
+
+	<body>
+		<FORM method='post' ACTION="./cgi-bin/imc_rpt.py">
+		  <header>
+		      <h1>IMC API Reporting</h1>
+		      <p> This tool requires API use enabled on the IMC server</p>
+		  </header>
+		<div id="login_creds">
+		  <h3>Enter the login credentials for IMC</h3>
+		  <table class="TFtable">
+		   <tr>
+		      <td>IMC IP Address: <input name="imc_server" size=20>  Username: <input name="imc_user" size=15>  Password: <input type="password" name="imc_passw" size=15></td>
+		   </tr> 
+		  </table>
+		  </table>
+		</div>
+		<BR>
+		<BR>
+		
+		<div id="submit">
+  		<center><input type="submit" style="font-face: 'Comic Sans MS'; font-size: larger; color: black; background-color: #0066FF; border: 3pt ridge lightgrey" value=" Reports"></center>
+  		</div>
+  		<footer>
+		  <p align="center"><font size="1" face="Arial" class="test">IMC Solutions from wookieware.com 2014</p>
+		  <img border =0 src="./images/wookieware.JPG" width="50" height="50">
+		</footer>
+	</body>
+</html>

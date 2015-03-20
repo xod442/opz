@@ -1,0 +1,86 @@
+#!/usr/bin/env python
+#--------------------------------------------------------------------------
+#
+#                    dpids
+#                    Rick Kauffman a.k.a. Chewie
+#
+#                    Hewlett Packard Company    Revision: 1.0
+#                   ~~~~~~~~~ WookieWare ~~~~~~~~~~~~~
+#      Change history....09/03/2014
+#
+#
+##--------------------------------------------------------------------------
+#  Initial release - Pulls VARS from webform. 
+#  List datapath identifiers
+#
+#------Might not need this but please they are handy------------------------ 
+#
+# Do the imports!!!! 
+#----------------------If you dont have it use "apt-get install (name)"
+
+import sys 
+import subprocess
+import cgi
+import cgitb; cgitb.enable()
+import hpsdnclient as hp
+import sqlite3
+
+#  	import pdb; pdb.set_trace()
+#-------------------------------------------------------------------------
+#              Get the field VARS from the calling HTML form
+#-------------------------------------------------------------------------
+
+form = cgi.FieldStorage()
+server = form.getvalue('server')
+user = form.getvalue('user')
+passw = form.getvalue('passw')
+
+#------------------------------------------------------------------------------
+#          Create database and tables
+#-----------------------------------------------------------------------------
+db = sqlite3.connect('/usr/lib/cgi-bin/oui.db')
+cur = db.cursor()
+
+#Create authorization Token
+
+auth = hp.XAuthToken(user=user,password=passw,server=server)
+api=hp.Api(controller=server,auth=auth)
+
+#Get information from controller
+dpidz = api.get_datapaths()
+
+#-----------------------------------------------------------------------------
+#          Create Dynamic Web Page
+#---------------------------------------------------------------------------
+
+print "Content-type:text/html\r\n\r\n"
+print "<!DOCTYPE html>"
+print "<html>"
+print "<head>"
+print "<title> wookieware.com</title>"
+print "</head>"
+print "<body>"
+print "<FORM method='post' ACTION=\"./xyz.py\">"
+print "<h3> List of current datapath identifiers</h3>" 
+print "<HR> "
+print "<p>Look at this awesome list.</p>"
+print "<br>"
+print "<select name=\"list_o_pids\" multiple size=\"10\">"
+for d in dpidz:
+	x = d.dpid
+	print "<option value = \"%s\"> %s </option>" % (x,x)
+print "</select>"
+print "<br>"
+print "Hold down the CTRL (windows) or the Command (Mac) key and select multiple dpids for processing"
+print " <center><input type=\"submit\" style=\"font-face: 'Comic Sans MS'; font-size: larger; color: black; background-color: #FF0000; border: 3pt ridge lightgrey\" value=\" Go For It\"></center>"
+print "<hr>"
+print "<br>"
+print "<input type=\"hidden\" name=\"server\" value=%s>" % (server)
+print "<input type=\"hidden\" name=\"user\" value=%s>" % (user)
+print "<input type=\"hidden\" name=\"passw\" value=%s>" % (passw)
+print "<p>For more information on how to use this application <a href=\"/faq.html\">User Guide</a></p>"  
+print "<center><font face=\"Arial\" size=\"1\">SDN Solutions From WookieWare 2014</font></center>"
+print "</body>"
+print "</html>"
+
+
